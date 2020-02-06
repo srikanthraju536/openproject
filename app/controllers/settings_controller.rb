@@ -68,7 +68,12 @@ class SettingsController < ApplicationController
   end
 
   def default_breadcrumb
-    t(:label_system_settings)
+    if params[:action] == "plugin"
+      plugin = Redmine::Plugin.find(params[:id])
+      plugin.name
+    else
+      t(:label_system_settings)
+    end
   end
 
   def show_local_breadcrumb
